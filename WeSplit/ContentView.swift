@@ -27,8 +27,17 @@ struct ContentView: View {
                             Text("\($0)people")
                         }
                     }
-                    
                 }
+                
+                Section{
+                    Picker("TipPercentage", selection: $tipPercentage) {
+                        ForEach(0..<tipSizes.count){
+                            Text("\(self.tipSizes[$0])")
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                
                 Section{
                     Text("$\(checkAmount)")
                 }
@@ -59,4 +68,5 @@ struct ContentView_Previews: PreviewProvider {
  6. Buttons
  7. Property wrappers -- @states allows mutation of a variable in a struct
  8. Two-binding(Read and Write a variable) with $
+ 9. Pickers and using ForEach to loop and create views
  */
