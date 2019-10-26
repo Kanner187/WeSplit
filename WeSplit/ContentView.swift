@@ -27,20 +27,21 @@ struct ContentView: View {
                             Text("\($0)people")
                         }
                     }
+                    .pickerStyle(DefaultPickerStyle())
                 }
                 
-                Section{
-                    Picker("TipPercentage", selection: $tipPercentage) {
+                Section(header: Text("How much tip do you want to leave?")) {
+                    Picker("Tip", selection: $tipPercentage) {
                         ForEach(0..<tipSizes.count){
-                            Text("\(self.tipSizes[$0])")
+                            Text("\(self.tipSizes[$0])%")
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+                .pickerStyle(SegmentedPickerStyle())
                 }
                 
-                Section{
+                Section(header: Text("Amount"), content: {
                     Text("$\(checkAmount)")
-                }
+                })
                 .navigationBarTitle("WeSplit")
 
               
@@ -69,4 +70,5 @@ struct ContentView_Previews: PreviewProvider {
  7. Property wrappers -- @states allows mutation of a variable in a struct
  8. Two-binding(Read and Write a variable) with $
  9. Pickers and using ForEach to loop and create views
+ 10.SegmentedPickerStyle 
  */
