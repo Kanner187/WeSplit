@@ -15,6 +15,15 @@ struct ContentView: View {
     @State var checkAmount = ""
     let tipSizes = [10,15,20,25,0]
     
+    private var sharePerPerson: Double {
+        //Do computation here....
+        let personCount = Double(numberOfPeople + 2)
+        let tip = Double(tipSizes[tipPercentage])
+        let orderAmount = Double(checkAmount) ?? 0
+        let amount = (orderAmount + (orderAmount * (tip / 100))) / personCount
+        return amount
+    }
+   
     //Body definition
     var body: some View{
         NavigationView{
@@ -23,8 +32,8 @@ struct ContentView: View {
                     TextField("CheckAmount", text: $checkAmount)
                         .keyboardType(.decimalPad)
                     Picker("Number of People", selection: $numberOfPeople) {
-                        ForEach(2..<100){
-                            Text("\($0)people")
+                        ForEach(2..<10){
+                            Text("\($0) people")
                         }
                     }
                     .pickerStyle(DefaultPickerStyle())
@@ -40,7 +49,7 @@ struct ContentView: View {
                 }
                 
                 Section(header: Text("Amount"), content: {
-                    Text("$\(checkAmount)")
+                    Text("$\(sharePerPerson, specifier: "%.2f")")
                 })
                 .navigationBarTitle("WeSplit")
 
