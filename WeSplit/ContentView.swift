@@ -50,9 +50,9 @@ struct ContentView: View {
                 
                 Section(header: Text("Amount"), content: {
                     Text("$\(sharePerPerson, specifier: "%.2f")")
+                        .foregroundColor(tipPercentage == 4 ? Color.red : Color.black)
                 })
                 .navigationBarTitle("WeSplit")
-
               
             }
         }
